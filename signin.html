@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+  
+    <h1>WELCOME BACK! PLEASE ENTER YOUR CREDENTIALS TO ACCESS YOUR ACCOUNT.</h1>
+    <div class="white-box">
+    <div class="INN">
+      
+        <form action="submit" >
+            <div class="come">LOGIN</div>
+
+            <div class="email">
+                <label for="Mail"></label>
+                <br>
+                <input type="text" class="email_wala_border" placeholder="  Email" required>
+            </div>
+            
+            <div class="pass">
+                <label for="Mail"></label>
+                <br>
+                <input type="password" class="pass_wala_border" placeholder="  Password" id="myInput" required>
+                <br>
+                <div class="show"><input type="checkbox" onclick="myFunction()">Show Password </div>
+                <br>
+                <div class="not_member"><p>Not a member?<a class="cc" href="signup.html"><b>Signup</b></a></p></div>
+
+                <script>
+                    function myFunction() {
+                      var x = document.getElementById("myInput");
+                      if (x.type === "password") {
+                        x.type = "text";
+                      } else {
+                        x.type = "password";
+                      }
+                    }
+                    </script>
+            </div>
+            <input type="submit" value="LOGIN"  color=>
+        </form>
+    </div></div>
+</body>
+</html>

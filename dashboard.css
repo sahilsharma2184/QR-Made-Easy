@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.h1
+{
+    margin-left: 20px;
+    font-size: 75px;
+    color: white;
+    font-weight:100;
+    font-family: "Red Hat Display",sans-serif;
+}
+
+.h2{
+    display: flex;
+    justify-content: center;
+    
+    font-size: 33px;
+    color: white;
+    font-weight:100;
+    font-family: "Red Hat Display",sans-serif;
+    margin-top: 100px;
+}
+
+body{
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+}
+.ph
+{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    height: 100px;
+    background-color:#3f3f8600;
+    font-size: 33px;
+    font-family: "Red Hat Display",sans-serif;
+    color: white;
+    border-color: #00008b00;
+    outline:none;
+}
+::placeholder{
+    color: white;
+    outline:hidden;
+    
+}
+.btn{
+    height: 85px;
+    background-color:#3f3f8600;
+    font-size: 33px;
+    font-family: "Red Hat Display",sans-serif;
+    color: white;
+    border-color: #00008b00;
+    
+}
+.btn:hover{
+    background-color: rgb(0, 0, 0);
+    transition: 0.75s;
+    border-radius: 10px;
+    color:  rgb(70, 83, 100);
+    cursor: pointer;
+    
+}
+.URL{
+    
+    text-underline-offset: 9px;
+    display: flex;
+    justify-content: center;
+    }
+.gen{
+    display: flex;
+    justify-content: center;
+}

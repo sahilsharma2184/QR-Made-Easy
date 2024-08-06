@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <h1>JOIN QR MADE EASY AND STREAMLINE YOUR DIGITAL CONNECTION EFFORTLESSLY.</h1>
+    
+    <div class="INN">
+        <form action="submit" >
+            <div class="naam">
+                <div class="come">SIGNUP</div>
+                <br>
+                <input type="text" class="name_wala_border" placeholder="  Name" required>
+                <br>
+            </div>
+            <div class="email">
+                <label for="Mail"></label>
+                <br>
+                <input type="text" class="email_wala_border" placeholder="  Email" required>
+            </div>
+            <div class="pass">
+                <label for="Mail"></label>
+                <br>
+                <input type="password" class="pass_wala_border" placeholder="  Password" id="myInput" required>
+                <br>
+                <input type="checkbox" class="web" onclick="myFunction()">Show Password
+                <script>
+                    function myFunction() {
+                      var x = document.getElementById("myInput");
+                      if (x.type === "password") {
+                        x.type = "text";
+                      } else {
+                        x.type = "password";
+                      }
+                    }
+                    </script>
+            </div>
+            <div class="already_user"><p>Already a User? <a class="ccc" href="signin.html"> <b>Login</b></a></p></div>
+            <input class="btn" type="submit" value="SIGNUP" >
+        </form>
+    </div>
+</body>
+</html>
