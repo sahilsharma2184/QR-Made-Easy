@@ -1,6 +1,11 @@
 import requests #Importing requests module to validate the URL which will be entered by the user
 import time #Importing time module to make the code wait wherever required
 import qrcode #Importing qrcode module to generate the qrcode for the url given by the user
+import smtplib #Importing smtplib module to send emails using the Simple Mail Transfer Protocol(SMTP)
+from email.mime.multipart import MIMEMultipart #MIMEMultipart can hold multiple parts like images/PDFs/files/plain text or HTML message
+from email.mime.text import MIMEText #MIMEText creates the HTML or text part of email body, allows to specify the content of mail. After creation the text component can be addded to the MIMEMultipart container to form the body of the mail
+from email.mime.base import MIMEBase #MIMEBase is a base class to add the attachments to your mail
+from email import encoders  #encoders is used to emcode attachments in base64 since they can be binary(images/PDFs), for transmission over SMTP
 
 print("Welcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
 
@@ -32,6 +37,7 @@ while True:
 
     except requests.exceptions.RequestException as error: #This block catches, handles and displays any errors that occur when trying to access the URL
             print("Error occured: ",error) #Displays the error that occured for review
+#End of while loop
 
 #Creation of the QR code object
 qr = qrcode.QRCode( #This is helpful incase of customizations
@@ -52,6 +58,46 @@ consent=input() #They need to enter 'Yes' or 'No'
 if consent == 'Yes': #If the user enters 'Yes' then the if block will be executed
 
     print("Provide me your mail id below") #Prompting user to enter their mail id
-    mail=input()
+    receiver=input()
+    sender="qrmadeeasy1@gmail.com"
+
+    #making instance of the MIMEMultipart to hold different parts of mail, including the subject,body and attachments
+    instance=MIMEMultipart()
+
+    instance['From'] = sender #storing sender's mail address
+    instance['To'] = receiver #storing receiver's mail address
+
+    instance['Subject'] = name+", your QR Code is here!" #storing subject of the mail
+
+    body = name+", we were glad that you chose us. We are attaching the QR Code as you requested" #body message added in the mail which is to be sent to the receiver
+
+    instance.attach(MIMEText(body, 'plain')) #the body content is attached as plain text without any formatting
+
+    file = "qrcode.png" #file that is to be sent in the mail
+    attachment = open("D:\QR_Made_Easy\qrcode.png", "rb") #the file is opened in binary read mode
+
+    MIMEBase_instance = MIMEBase('application', 'octet-stream')
+
+    MIMEBase_instance.set_payload((attachment).read())
+
+    encoders.encode_base64(MIMEBase_instance)
+
+    MIMEBase_instance.add_header('Content-Disposition', "attachment; filename=%s" %file)
+
+    instance.attach(MIMEBase_instance)
+
+    SMTP_session = smtplib.SMTP('smtp.gmail.com', 587)
+
+    SMTP_session.starttls()
+
+    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account
+
+    text = instance.as_string()
+
+    SMTP_session.sendmail(sender, receiver, text)
+
+    SMTP_session.quit()
+
+    print(name+", We have shared the QR Code with you. Check your mail!")
 else:
     print(name+", We're glad to provide you with our services!") #Incase user doesn't wants the QR code to be mailed on their mail id then else block will be executed 
