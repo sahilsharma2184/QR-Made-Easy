@@ -4,7 +4,8 @@ import qrcode #Importing qrcode module to generate the qrcode for the url given 
 
 print("Welcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
 
-print("Hey!, what should I call you?") #Asking for user's name
+print("Hey, Let's have a quick introduction!\n") #Asking for user's name
+print("What should I call you ?")
 name=input() #Taking input for name
 
 print("\nHello "+name+", nice to meet you!\n") #Greeting user
@@ -23,7 +24,7 @@ while True:
         
         if response.status_code == 200: #if condition to check that whether the site is responsding not 
                 print(name+", the url you entered is valid!\n") #Displaying message for the user to tell that the entered URL is valid
-                print("The processing of QR image and text file has started...") #Now as the validity of URL is checked so the next stage begins where the generation of QR image and Text file is started
+                print("The processing of QR image and text file has started...\n") #Now as the validity of URL is checked so the next stage begins where the generation of QR image and Text file is started
                 time.sleep(2) #The code sleeps for 2 seconds so that the user gets a feel that the processing is going on
                 break
         else:
@@ -43,3 +44,14 @@ qr.add_data(url) #Encoding the URL into the QR Code
 qr.make(fit=True) #Making sure that the information is encoded into the QR code image
 image=qr.make_image(fill_color="black", back_color="white") #Customizable options for color, here black and white
 image.save("qrcode.png") #Saving the QR code image in .png format
+
+print(name+", now that your QR code has been generated, do you want me to send it to your email?") #Asking user if he/she wants the qr code to be sent on their mail
+print("Enter 'Yes' or 'No' as per your choice") #Asking user for their wish
+consent=input() #They need to enter 'Yes' or 'No'
+
+if consent == 'Yes': #If the user enters 'Yes' then the if block will be executed
+
+    print("Provide me your mail id below") #Prompting user to enter their mail id
+    mail=input()
+else:
+    print(name+", We're glad to provide you with our services!") #Incase user doesn't wants the QR code to be mailed on their mail id then else block will be executed 
