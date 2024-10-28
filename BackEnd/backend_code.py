@@ -16,7 +16,7 @@ while True:
     try:
         #Checking if the url is having correct scheme
         if not (url.startswith("https://") or url.startswith("http://")): #Validates the url given to check whether it starts with 'https://' or 'http://'
-            print(name+", I guess that you have entered wrong url, kindly check that and enter again.") #Incase there is any mistake in the entered url, then it prompts the user to enter the url again
+            print(name+", I guess that you have entered wrong url, kindly check that and enter again.\n") #Incase there is any mistake in the entered url, then it prompts the user to enter the url again
             continue #this skips the current  iteration for the loop and asks for the url again
         
         response=requests.get(url) #requests.get(url) sends a GET request to the entered url and tries to access the url entered, further the response variable stores the status code that is received back.            
