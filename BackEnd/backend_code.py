@@ -69,7 +69,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
 
     instance['Subject'] = name+", your QR Code is here!" #storing subject of the mail
 
-    body = name+", we were glad that you chose us. We are attaching the QR Code as you requested" #body message added in the mail which is to be sent to the receiver
+    body = name+", we were glad that you chose us. We are attaching the QR Code as you requested." #body message added in the mail which is to be sent to the receiver
 
     instance.attach(MIMEText(body, 'plain')) #the body content is attached as plain text without any formatting
 
