@@ -75,7 +75,8 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
 
     file = "qrcode.png" #file that is to be sent in the mail
     attachment = open("D:\QR_Made_Easy\qrcode.png", "rb") #the file is opened in binary read mode as a qr code is generated as an image and aren't considered plain text as they contain pixels, colors; so the opening helps in ensuring that data is read correctly without any data loss or modification and in binary read mode all the bytes are preserved
-    MIMEBase_instance = MIMEBase('application', 'octet-stream')
+    
+    MIMEBase_instance = MIMEBase('application', 'octet-stream') #instance of MIMEBase class(part of email.mime package) for attachment, a MIMEBase object to handle binary data as email attachment. 'application' is primary type of data to be sent, used for data tha is not specifically text; the 'octet-stream' is subtype of 'application', it is generic binary data type and indicates that data format is unknown / arbitrary. 
 
     MIMEBase_instance.set_payload((attachment).read())
 
