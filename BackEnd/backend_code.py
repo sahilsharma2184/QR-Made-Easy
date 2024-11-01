@@ -64,7 +64,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     #making instance of the MIMEMultipart to hold different parts of mail, including the subject,body and attachments
     instance=MIMEMultipart()
 
-    instance['From'] = sender #storing sender's mail address
+    instance['From'] = f"QR Made Easy <{sender}>" #storing sender's mail address
     instance['To'] = receiver #storing receiver's mail address
 
     instance['Subject'] = name+", your QR Code is here!" #storing subject of the mail
@@ -74,7 +74,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     instance.attach(MIMEText(body, 'plain')) #the body content is attached as plain text without any formatting
 
     file = "qrcode.png" #file that is to be sent in the mail
-    attachment = open("D:\QR_Made_Easy\qrcode.png", "rb") #the file is opened in binary read mode as a qr code is generated as an image and aren't considered plain text as they contain pixels, colors; so the opening helps in ensuring that data is read correctly without any data loss or modification and in binary read mode all the bytes are preserved
+    attachment = open(r"D:\QR_Made_Easy\qrcode.png", "rb") #the file is opened in binary read mode as a qr code is generated as an image and aren't considered plain text as they contain pixels, colors; so the opening helps in ensuring that data is read correctly without any data loss or modification and in binary read mode all the bytes are preserved
     
     MIMEBase_instance = MIMEBase('application', 'octet-stream') #instance of MIMEBase class(part of email.mime package) for attachment, a MIMEBase object to handle binary data as email attachment. 'application' is primary type of data to be sent, used for data tha is not specifically text; the 'octet-stream' is subtype of 'application', it is generic binary data type and indicates that data format is unknown / arbitrary. 
     MIMEBase_instance.set_payload((attachment).read()) #used to add the content of the attachment i.e. QR code image to the MIMEBase_instance object inorder to send it as an email attachment. The set_payload is method of MIMEBase class used to store binary data with the MIMEBase_instance so that it becomes the payload of the attachment part in the email.
@@ -87,7 +87,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     SMTP_session = smtplib.SMTP('smtp.gmail.com', 587) #smtp session is created to connect wit the Gmail SMTP server, smtplib.SMTP is function in the 'smtplib' library. The 'smtp.gmail.com' specifies the SMTP server address for Gmail and 587 is port no. for Gmail SMTP server.
     SMTP_session.starttls() #enabling tls, Transport Layer Security encrypts the connection to protect data which is sent over the internet.
 
-    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
+    SMTP_session.login(sender, "app-password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
 
     text = instance.as_string() #the entire email content which is stored in instance object, is converted single formatting string
 
