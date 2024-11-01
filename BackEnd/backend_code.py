@@ -7,7 +7,7 @@ from email.mime.text import MIMEText #MIMEText creates the HTML or text part of 
 from email.mime.base import MIMEBase #MIMEBase is a base class to add the attachments to your mail
 from email import encoders  #encoders is used to emcode attachments in base64 since they can be binary(images/PDFs), for transmission over SMTP
 
-print("Welcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
+print("\nWelcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
 
 print("Hey, Let's have a quick introduction!\n") #Asking for user's name
 print("What should I call you ?")
