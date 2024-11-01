@@ -87,14 +87,14 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     SMTP_session = smtplib.SMTP('smtp.gmail.com', 587) #smtp session is created to connect wit the Gmail SMTP server, smtplib.SMTP is function in the 'smtplib' library. The 'smtp.gmail.com' specifies the SMTP server address for Gmail and 587 is port no. for Gmail SMTP server.
     SMTP_session.starttls() #enabling tls, Transport Layer Security encrypts the connection to protect data which is sent over the internet.
 
-    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending
+    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
 
-    text = instance.as_string()
+    text = instance.as_string() #the entire email content which is stored in instance object, is converted single formatting string
 
-    SMTP_session.sendmail(sender, receiver, text)
+    SMTP_session.sendmail(sender, receiver, text) #sending mail from sender to receiver with the message formtted as MIME compliant string that includes the subject,body and attachment.
 
-    SMTP_session.quit()
+    SMTP_session.quit() #ending SMTP session and closing connection with the SMTP server
 
-    print(name+", We have shared the QR Code with you. Check your mail!")
+    print(name+", We have shared the QR Code with you. Check your mail!") #Displaying message that the mail has been sent
 else:
-    print(name+", We're glad to provide you with our services!") #Incase user doesn't wants the QR code to be mailed on their mail id then else block will be executed 
+    print(name+", We have encountered an error, please try again. ") #Incase of any error this message will be displayed to the user.
