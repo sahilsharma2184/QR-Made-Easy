@@ -80,7 +80,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     MIMEBase_instance.set_payload((attachment).read()) #used to add the content of the attachment i.e. QR code image to the MIMEBase_instance object inorder to send it as an email attachment. The set_payload is method of MIMEBase class used to store binary data with the MIMEBase_instance so that it becomes the payload of the attachment part in the email.
     encoders.encode_base64(MIMEBase_instance) #encoding of payload so that the it can be sent reliably over email protocols and making sure that it is compatible with email transmission stds.
 
-    MIMEBase_instance.add_header('Content-Disposition', "attachment; filename=%s" %file)
+    MIMEBase_instance.add_header('Content-Disposition', "attachment; filename=%s" %file) #add_header adds header to the MIMEBase_instance which defines the email client how to handle/display/interact with the attachment. Content-Disposition makes sure that the attachment appears as a separate downloadable file in the recipient’s email and not inline.
 
     instance.attach(MIMEBase_instance)
 
