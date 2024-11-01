@@ -82,13 +82,12 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
 
     MIMEBase_instance.add_header('Content-Disposition', "attachment; filename=%s" %file) #add_header adds header to the MIMEBase_instance which defines the email client how to handle/display/interact with the attachment. Content-Disposition makes sure that the attachment appears as a separate downloadable file in the recipient’s email and not inline.
 
-    instance.attach(MIMEBase_instance)
+    instance.attach(MIMEBase_instance) #'instance.attach' is method of MIMEMultipart object and here it attaches qr code which is represented by the MIMEBase_instance
 
-    SMTP_session = smtplib.SMTP('smtp.gmail.com', 587)
+    SMTP_session = smtplib.SMTP('smtp.gmail.com', 587) #smtp session is created to connect wit the Gmail SMTP server, smtplib.SMTP is function in the 'smtplib' library. The 'smtp.gmail.com' specifies the SMTP server address for Gmail and 587 is port no. for Gmail SMTP server.
+    SMTP_session.starttls() #enabling tls, Transport Layer Security encrypts the connection to protect data which is sent over the internet.
 
-    SMTP_session.starttls()
-
-    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account
+    SMTP_session.login(sender, "app_password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending
 
     text = instance.as_string()
 
