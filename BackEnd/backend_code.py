@@ -6,7 +6,8 @@ from email.mime.multipart import MIMEMultipart #MIMEMultipart can hold multiple 
 from email.mime.text import MIMEText #MIMEText creates the HTML or text part of email body, allows to specify the content of mail. After creation the text component can be addded to the MIMEMultipart container to form the body of the mail
 from email.mime.base import MIMEBase #MIMEBase is a base class to add the attachments to your mail
 from email import encoders  #encoders is used to emcode attachments in base64 since they can be binary(images/PDFs), for transmission over SMTP
-
+import threading #Manages threads, as they enable concurrent execution like task should run in background while the main program continues execution, used to delete the qrcode image file that is generated after a while
+import os #For file handling
 print("\nWelcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
 
 print("Hey, Let's have a quick introduction!\n") #Asking for user's name
@@ -87,7 +88,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     SMTP_session = smtplib.SMTP('smtp.gmail.com', 587) #smtp session is created to connect wit the Gmail SMTP server, smtplib.SMTP is function in the 'smtplib' library. The 'smtp.gmail.com' specifies the SMTP server address for Gmail and 587 is port no. for Gmail SMTP server.
     SMTP_session.starttls() #enabling tls, Transport Layer Security encrypts the connection to protect data which is sent over the internet.
 
-    SMTP_session.login(sender, "app-password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
+    SMTP_session.login(sender, "vesj rtjo nkrk moal") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
 
     text = instance.as_string() #the entire email content which is stored in instance object, is converted single formatting string
 
@@ -97,4 +98,10 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
 
     print(name+", We have shared the QR Code with you. Check your mail!") #Displaying message that the mail has been sent
 else:
-    print(name+", We have encountered an error, please try again. ") #Incase of any error this message will be displayed to the user.
+    print(name+", Access the QR Code as it will get automatically deleted under 60 seconds.")
+    def qrcode_automatic_deletion(file_path, delay): #Function to automatically delete the QR image generated  after some time
+        time.sleep(delay) #Pausing function's execution so that user can access the QR code file for 60 seconds before getting deleted
+        if os.path.exists(file_path): #Checking if the QR code image file exists
+            os.remove(file_path) #Incase the image file exists then it will get removed
+    qrcode_automatic_deletion(r"D:\QR_Made_Easy\qrcode.png", 30) #Calling the function and deleting the qrcode image after 30 seconds to let user access it
+    print(name+", We're glad to provide you with our services!") #Incase of any error this message will be displayed to the user.
