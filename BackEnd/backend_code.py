@@ -6,7 +6,6 @@ from email.mime.multipart import MIMEMultipart #MIMEMultipart can hold multiple 
 from email.mime.text import MIMEText #MIMEText creates the HTML or text part of email body, allows to specify the content of mail. After creation the text component can be addded to the MIMEMultipart container to form the body of the mail
 from email.mime.base import MIMEBase #MIMEBase is a base class to add the attachments to your mail
 from email import encoders  #encoders is used to emcode attachments in base64 since they can be binary(images/PDFs), for transmission over SMTP
-import threading #Manages threads, as they enable concurrent execution like task should run in background while the main program continues execution, used to delete the qrcode image file that is generated after a while
 import os #For file handling
 print("\nWelcome to QR Made Easy! Glad to see you here!\n") #Welcome display message
 
