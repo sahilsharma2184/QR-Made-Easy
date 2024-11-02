@@ -98,7 +98,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
 
     print(name+", We have shared the QR Code with you. Check your mail!") #Displaying message that the mail has been sent
 else:
-    print(name+", Access the QR Code as it will get automatically deleted under 60 seconds.")
+    print(name+", Access the QR Code as it will get automatically deleted under 30 seconds.") #Displaying the message to the user to access the qrcode
     def qrcode_automatic_deletion(file_path, delay): #Function to automatically delete the QR image generated  after some time
         time.sleep(delay) #Pausing function's execution so that user can access the QR code file for 60 seconds before getting deleted
         if os.path.exists(file_path): #Checking if the QR code image file exists
