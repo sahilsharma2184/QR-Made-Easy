@@ -87,7 +87,7 @@ if consent == 'Yes': #If the user enters 'Yes' then the if block will be execute
     SMTP_session = smtplib.SMTP('smtp.gmail.com', 587) #smtp session is created to connect wit the Gmail SMTP server, smtplib.SMTP is function in the 'smtplib' library. The 'smtp.gmail.com' specifies the SMTP server address for Gmail and 587 is port no. for Gmail SMTP server.
     SMTP_session.starttls() #enabling tls, Transport Layer Security encrypts the connection to protect data which is sent over the internet.
 
-    SMTP_session.login(sender, "vesj rtjo nkrk moal") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
+    SMTP_session.login(sender, "app-password") #replace the app password with the actual app password that was generated with your mail account. Authentication of sender with SMTP server is done to prevent spam and unauthorized email sending. 'SMTP_session' is the instance of smtplib.SMTP and is the connection established to the SMTP server.
 
     text = instance.as_string() #the entire email content which is stored in instance object, is converted single formatting string
 
